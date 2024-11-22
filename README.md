@@ -1,27 +1,45 @@
 # TaskUi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+Este repositório contém o Front-end do projeto desenvolvido com Angular 18.
 
-## Development server
+## Pré-requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Antes de começar, verifique se você tem o Node.js e o npm instalados em sua máquina.
+Para verificar se o Node.js está instalado, execute o seguinte comando no terminal:
 
-## Code scaffolding
+```bash
+node -v
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Como Rodar o Front-end
 
-## Build
+Siga os passos abaixo para rodar a aplicação Angular localmente.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Clone o Repositório
 
-## Running unit tests
+### Instalar as Dependências
+Clone o repositório com o comando:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone
+```
 
-## Running end-to-end tests
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Rodar a Aplicação
 
-## Further help
+Para iniciar o servidor, execute o comando:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm start
+```
+
+### Rodar a Aplicação em Ambiente de Produção
+
+Se você deseja rodar a aplicação em um ambiente de produção, primeiro você precisa criar a versão otimizada da aplicação. Para isso, execute o seguinte comando para realizar o build da aplicação:
+
+```bash
+npm run build --prod
+```
