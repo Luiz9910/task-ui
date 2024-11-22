@@ -2,14 +2,14 @@
   <mat-dialog-content>
     <p>
       Tem certeza que deseja excluir a tarefa de id
-      <strong> {{ data.itemOptionId }}</strong>
+      <strong> {{ data.taskId }}</strong>
       ?
     </p>
   </mat-dialog-content>
   <mat-dialog-actions class="dialog-actions">
     <button
       class="btn-delete"
-      (click)="deleteItem(data.itemOptionId)"
+      (click)="deleteItem(data.taskId)"
     >
       Excluir
     </button>

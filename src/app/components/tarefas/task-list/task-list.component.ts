@@ -1,26 +1,25 @@
-// src/app/app.component.ts
-
-import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../../services/task.service';
-import { Task } from '../../../models/Tasks';
 import { CommonModule, NgFor } from '@angular/common';
-import { HttpResponse } from '@angular/common/http';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ButtonConfirmationDeleteComponent } from '../buttonConfirmation/button-confimation-delete/button-confirmation-delete.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Task } from '../../../models/Tasks';
+import { TaskService } from '../../../services/task.service';
 import { FormCreateComponent } from '../form-create/form-create.component';
 import { FormUpdateComponent } from '../form-update/form-update.component';
+import { FormsModule } from '@angular/forms';
+import { ButtonConfirmationDeleteComponent } from '../buttonConfirmation/button-confimation-delete/button-confirmation-delete.component';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
   standalone: true,
-  imports: [NgFor, RouterOutlet, CommonModule, RouterLinkActive, RouterLink],
+  imports: [NgFor, RouterOutlet, CommonModule, RouterLinkActive, RouterLink,  FormsModule, TaskListComponent],
 })
-export class TaskListComponet implements OnInit {
-  title = 'task';
-  tasks: Task[] | null = [];
+export class TaskListComponent implements OnInit {
+  tasks: Task[] = [];
+  idUser: string = '';
+  status: string = '';
 
   constructor(private taskService: TaskService, public dialog: MatDialog) {}
 
@@ -29,50 +28,62 @@ export class TaskListComponet implements OnInit {
   }
 
   loadTasks(): void {
-    this.taskService.getTasks().subscribe(
-      (data: HttpResponse<Task[]>) => {
-        this.tasks = data.body;
-      },
-      (error) => {
-        console.error('Erro ao carregar as tarefas', error);
-      }
-    );
+    this.taskService.getTasks().subscribe((data: any) => {
+      this.tasks = data.body;  // Carrega as tarefas da API
+    }, (error) => {
+      console.error('Erro ao carregar as tarefas', error);
+    });
   }
 
-  confirmDelete(data: any) {
+  // Função para filtrar as tarefas
+  filteredTasks() {
+    let filteredTasks = this.tasks;
+
+    // Filtro por ID do Usuário
+    if (this.idUser) {
+      filteredTasks = filteredTasks.filter(task => task.userId.toString().includes(this.idUser));
+    }
+
+    // Filtro por Status
+    if (this.status) {
+      filteredTasks = filteredTasks.filter(task => task.status === this.status);
+    }
+
+    return filteredTasks;
+  }
+
+  confirmDelete(taskId: number) {
     const dialog = this.dialog.open(ButtonConfirmationDeleteComponent, {
-      data: {
-        itemOptionId: data,
-      },
+      data: { taskId }
     });
 
-    dialog.afterClosed().subscribe((result: any) => {
+    dialog.afterClosed().subscribe(result => {
       if (result) {
-        this.loadTasks()
+        this.loadTasks();
+      }
+    });
+  }
+
+  updateConfirm(task: Task) {
+    const dialog = this.dialog.open(FormUpdateComponent, {
+      data: task
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadTasks();  // Recarrega as tarefas após edição
       }
     });
   }
 
   createConfirm() {
     const dialog = this.dialog.open(FormCreateComponent, {
-      width: '400px',
+      width: '400px'
     });
 
-    dialog.afterClosed().subscribe((result: any) => {
+    dialog.afterClosed().subscribe(result => {
       if (result) {
-        this.loadTasks()
-      }
-    });
-  }
-
-  updateConfirm(data: any) {
-    const dialog = this.dialog.open(FormUpdateComponent, {
-      data,
-    });
-
-    dialog.afterClosed().subscribe((result: any) => {
-      if (result) {
-        this.loadTasks()
+        this.loadTasks();  // Recarrega as tarefas após criação
       }
     });
   }

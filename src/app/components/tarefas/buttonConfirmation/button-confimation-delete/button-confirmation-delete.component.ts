@@ -21,7 +21,7 @@ export class ButtonConfirmationDeleteComponent {
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA)
     public data: {
-      itemOptionId: number;
+      taskId: number;
     },
     private dialogRef: MatDialogRef<ButtonConfirmationDeleteComponent>
   ) {}

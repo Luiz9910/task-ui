@@ -28,9 +28,10 @@ export class ConfirmDeleteComponent {
 
   deleteItem(id: any): any {
     return this.api.deleteUser(id).subscribe((response: any) => {
-      if (response.status === 200) {
-        alert(response.body);
+      if (response.status === 204) {
+        alert("Usuario excluido com sucesso!");
         this.dialogRef.close(true);
+        return
       }
 
       alert(`Erro ao deletar o usuário de id ${id}`);

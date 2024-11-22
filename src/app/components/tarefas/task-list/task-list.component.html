@@ -3,17 +3,27 @@
     <div>
       <nav>
         <ul>
-          <li><a routerLink="/usuarios">Usuarios</a></li>
+          <li><a routerLink="/usuarios">Usuários</a></li>
         </ul>
       </nav>
     </div>
     <h1>Tarefas</h1>
     <div class="filters">
-      <label for="userName">Nome do Usuário:</label>
-      <input type="text" id="userName" placeholder="Filtrar por nome do usuário" />
+      <label for="idUser">ID do Usuário:</label>
+      <input
+        type="text"
+        id="idUser"
+        [(ngModel)]="idUser"
+        placeholder="Filtrar por ID do Usuário"
+      />
 
-      <label for="idUser">Id usuário</label>
-      <input type="text" id="idUser" placeholder="Filtrar por id do usuário" />
+      <label for="status">Status da Tarefa:</label>
+      <select id="status" [(ngModel)]="status">
+        <option value="">Todos</option>
+        <option value="P">Pendente</option>
+        <option value="A">Em Andamento</option>
+        <option value="C">Concluído</option>
+      </select>
     </div>
   </div>
 
@@ -35,7 +45,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasks">
+      <tr *ngFor="let task of filteredTasks()">
         <td>{{ task.id }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
