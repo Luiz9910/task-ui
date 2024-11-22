@@ -1,0 +1,49 @@
+<!-- src/app/app.component.html -->
+<div class="container">
+  <div class="header">
+    <h1>Usuários</h1>
+    <div class="filters">
+      <label for="userName">Nome do Usuário:</label>
+      <input
+        type="text"
+        id="userName"
+        placeholder="Filtrar por nome do usuário"
+      />
+
+      <label for="idUser">Id usuário</label>
+      <input type="text" id="idUser" placeholder="Filtrar por id do usuário" />
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-add-user" (click)="createConfirm()">Adicionar Usuário</button>
+  </div>
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Data de Criação</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.createdDate | date : "dd/MM/yyyy HH:mm" }}</td>
+        <td class="actions">
+          <button class="btn-edit" (click)="updateConfirm(user)">Editar</button>
+          <button class="btn-remove" (click)="confirmDelete(user.id)">
+            Remover
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<router-outlet></router-outlet>

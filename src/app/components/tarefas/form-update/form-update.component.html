@@ -1,0 +1,53 @@
+<div class="modal-overlay">
+  <div class="dialog-container">
+    <form [formGroup]="editFormItemOption" (ngSubmit)="onSubmit()">
+      <h1 class="modal-title">Atualizar Tarefa</h1>
+
+      <div class="form-group">
+        <label for="title">Titulo</label>
+        <textarea
+          id="title"
+          formControlName="title"
+          placeholder="Titulo da tarefa"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Descrição da tarefa"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" formControlName="status" required>
+          <option value="P">Pendente</option>
+          <option value="A">Em andamento</option>
+          <option value="C">Concluída</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="limitDate">Data Limite</label>
+        <input
+          id="limitDate"
+          formControlName="limitDate"
+          type="datetime-local"
+          required
+        />
+      </div>
+
+      <div class="button-container">
+        <button type="submit" [disabled]="editFormItemOption.invalid" class="btn-save">Salvar</button>
+        <button type="button" mat-dialog-close class="btn-cancel">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

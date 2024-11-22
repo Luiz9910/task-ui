@@ -1,0 +1,64 @@
+<div class="modal-overlay">
+  <div class="dialog-container">
+    <form [formGroup]="editFormItemOption" (ngSubmit)="onSubmit()">
+      <h1>Adicionar Tarefa</h1>
+
+      <div class="form-group">
+        <label for="title">Título</label>
+        <input
+          id="title"
+          formControlName="title"
+          type="text"
+          placeholder="Título da tarefa"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Descrição da tarefa"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" formControlName="status" required>
+          <option value="P">Pendente</option>
+          <option value="A">Em andamento</option>
+          <option value="C">Concluída</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="limitDate">Data Limite</label>
+        <input
+          id="limitDate"
+          formControlName="limitDate"
+          type="datetime-local"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="userId">ID do Usuário</label>
+        <input
+          id="userId"
+          formControlName="userId"
+          type="number"
+          placeholder="ID do usuário responsável"
+          required
+        />
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="editFormItemOption.invalid">Salvar</button>
+        <button type="button" mat-dialog-close>Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

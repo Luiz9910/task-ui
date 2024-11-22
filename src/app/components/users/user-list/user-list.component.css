@@ -54,38 +54,39 @@ input:focus, select:focus {
   outline: none;
 }
 
-/* Tabela */
-.task-table {
+/* Tabela de Usuários */
+.user-table {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
   background-color: #ffffff;
   border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.task-table th, .task-table td {
+.user-table th, .user-table td {
   padding: 16px 20px;
   text-align: left;
   font-size: 15px;
 }
 
-.task-table th {
+.user-table th {
   background-color: #f5f5f5;
   color: #666;
   font-weight: 500;
   text-transform: uppercase;
 }
 
-.task-table td {
+.user-table td {
   border-bottom: 1px solid #eee;
 }
 
-.task-table tbody tr:nth-child(even) {
+.user-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
 /* Efeito hover nas linhas da tabela */
-.task-table tbody tr:hover {
+.user-table tbody tr:hover {
   background-color: #f2f2f2;
 }
 
@@ -131,7 +132,7 @@ input:focus, select:focus {
     gap: 10px;
   }
 
-  .task-table th, .task-table td {
+  .user-table th, .user-table td {
     font-size: 12px;
   }
 
@@ -139,4 +140,24 @@ input:focus, select:focus {
     font-size: 12px;
     padding: 6px 12px;
   }
+}
+
+.actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.btn-add-user {
+  padding: 10px 20px;
+  background-color: #4CAF50;  /* Cor verde */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-user:hover {
+  background-color: #388e3c;  /* Cor verde escuro ao passar o mouse */
 }
